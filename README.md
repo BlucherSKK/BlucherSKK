@@ -1,6 +1,6 @@
 # What about me?
 <p align="center">
-  <img width="500" src="https://github.com/Blucherx3/ReadAboutMe/blob/main/asetss/piano-piano-on-fire.gif">
+  <img width="500" src="https://github.com/Blucherx3/Blucherx3/blob/main/asetss/piano-piano-on-fire.gif">
 </p>
 
 Я очередной програмист-анимешник со странными опен сорс проектами. Наченал я с работы системным администратотром в 2023 году. Сейчас занимаюсь созданием десктоп пиложений под линукс и созданием дискорд ботов(всё опен сорс). Единственное образование которое пока что имею это 2-я степень оператора ЭВМ. Нахожусь в активном поиске работы, но и не против участия в опен сорс проектах.
