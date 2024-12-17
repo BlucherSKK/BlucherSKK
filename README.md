@@ -8,15 +8,11 @@
 
 <a name="learning-now"></a>
 
-[<img src="https://img.shields.io/badge/TypeScript-282C34?logo=typescript&logoColor=3178C6" alt="TypeScript logo" title="TypeScript" height="30" />][tech_tools_anchor]
-&nbsp;
-[<img src="https://img.shields.io/badge/C%2B%2B-282C34?logo=cplusplus&logoColor=%2300599C" alt="C++ logo" title="Cplusplus" height="30" />][tech_tools_anchor]
-&nbsp;
-[<img src="https://img.shields.io/badge/Rust-282C34?logo=rust&logoColor=%23CC342D" alt="Rust logo" title="Rust is not a game..." height="30" />][tech_tools_anchor]
-&nbsp;
-[<img src="https://img.shields.io/badge/Docker-282C34?logo=docker&logoColor=%232496ED" alt="Docker logo" title="Docker" height="30" />][tech_tools_anchor]
-&nbsp;
 
+[<img src="https://img.shields.io/badge/Rust-%23D9411E?style=flat-square&logo=rust&logoColor=%23000000" alt="Rust logo" title="Rust" height="30" />][tech_tools_anchor]
+[<img src="https://img.shields.io/badge/C%2B%2B-282C34?style=flat-square&logo=cplusplus&logoColor=%23388ea8" alt="C++ logo" title="Cplusplus" height="30" />][tech_tools_anchor]
+[<img src="https://img.shields.io/badge/Docker-%232496ED?style=flat-square&logo=docker&logoColor=%23F3F5F5" alt="Docker logo" title="Docker" height="30" />][tech_tools_anchor]
+[<img src="https://img.shields.io/badge/TypeScript-%233178C6?style=flat-square&logo=typescript&logoColor=%23728E9B" alt="Typeskript logo" title="TypeScript" height="30" />][tech_tools_anchor]
 
 <a name="learning-next"></a>
 
