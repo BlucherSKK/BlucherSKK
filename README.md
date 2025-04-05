@@ -23,6 +23,9 @@
 [<img src="https://img.shields.io/badge/Wgpu-%2340E0D0?style=flat-square&logo=wgpu&logoColor=%23F3F5F5" alt=" Wgpu logo" title="Wgpu" height="30" />][tech_tools_anchor]
 
 <a name="learning-next"></a>
+
+## Leetcode
+![](https://leetcard.jacoblin.cool/blucher_gk?ext=activity&theme=dark)
 ## Contacts
 
 [![Discord](asetss/discord.png)](https://discordapp.com/users/657872729126469642/)
