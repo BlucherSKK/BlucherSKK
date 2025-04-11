@@ -24,8 +24,6 @@
 
 <a name="learning-next"></a>
 
-## Leetcode
-![](https://leetcard.jacoblin.cool/blucher_gk?ext=activity&theme=dark)
 ## Contacts
 
 [![Discord](asetss/discord.png)](https://discordapp.com/users/657872729126469642/)
