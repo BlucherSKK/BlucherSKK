@@ -12,10 +12,10 @@
 	exec waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
 
 	# Запуск на определенном воркспейсе
-	assign [app_id="*"] workspace 1
+	assign * workspace 1
 
 	# Запуск в плавающем режиме
-	for_window [app_id="*"] floating enable
+	for_window * floating enable
 
 
 #--- ПЕРЕМЕННЫЕ -----------------------------------------------------------------------
