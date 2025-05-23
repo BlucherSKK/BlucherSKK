@@ -11,11 +11,8 @@
 	#exec autotiling
 	exec waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
 
-	# Запуск на определенном воркспейсе
-	assign * workspace 1
-
 	# Запуск в плавающем режиме
-	for_window * floating enable
+	default_for_window floating enable
 
 
 #--- ПЕРЕМЕННЫЕ -----------------------------------------------------------------------
@@ -48,7 +45,6 @@
 
 #--- УКРАШАТЕЛЬСТВА -------------------------------------------------------------------
 	# Обои
-	output * bg ~/.config/sway/wallpaper/wallhaven-n6zep6.jpg fill
 
 	# Шрифт (по ходу для заголовков)
 	font pango:JetBrainsMono 10
