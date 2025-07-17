@@ -11,8 +11,6 @@
 	#exec autotiling
 	exec waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
 
-	# Запуск в плавающем режиме
-	default_for_window floating enable
 
 
 #--- ПЕРЕМЕННЫЕ -----------------------------------------------------------------------
@@ -116,6 +114,7 @@
 	bindsym --to-code $mod+l exec lutris
 	bindsym --to-code $mod+i exec inkscape
 	bindsym --to-code $mod+b exec blender
+    bindsym --to-code $mod+b exec blender
 
     # Выключение/Перезагрузка	
 	bindsym --to-code $mod+Ctrl+r exec reboot
