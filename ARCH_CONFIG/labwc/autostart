@@ -1,0 +1,21 @@
+# wallpaper daemon
+swww-daemon &
+
+# notifis
+mako &
+
+# panel
+exec waybar &
+
+# ksuperkey -e 'Super_L=Alt_L|F1' &
+
+gsettings set org.gnome.desktop.interface font-name "Iosevka 13"
+
+# polkit
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+#monitors
+wlr-randr --output HDMI-A-1 --scale 1.1
+wlr-randr --output HDMI-A-1 --pos 0,0
+wlr-randr --output HDMI-A-2 --pos 2340,0
+
