@@ -1,0 +1,29 @@
+[{
+	"layer": "bottom",
+	"position": "top",
+	"height": 40,
+	"spacing": 2,
+	"output": ["HDMI-A-1"],
+
+	"include": [
+		"~/.config/waybar/modules.jsonc",
+	],
+	"modules-left": [
+		"custom/blucher",
+		"custom/keyboard",
+		"sway/language",
+	],
+	"modules-center": [
+		"clock",
+		"clock#celendar",
+	],
+	"modules-right": [
+		"temperature#cpu",
+		"temperature#gpu",
+		"cpu",
+		"memory",
+		"pulseaudio",
+		"tray"
+	]
+}
+]
