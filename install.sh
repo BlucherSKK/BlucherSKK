@@ -30,7 +30,7 @@ esac
 
 CONF_DIR="$HOME/.config"
 SCRIPT_DIR="$HOME/.scripts"
-BL_PKG=(gamescope steam labwc rofi-wayland waybar)
+BL_PKG=(gamescope steam labwc rofi-wayland waybar nemo btop)
 
 
 if [ ! -d $SCRIPT_DIR ]; then
@@ -76,4 +76,5 @@ if [ $UNFOUND_PKG -ne "" ]; then
 fi
 
 
-cp "$CNF_DIR/*" "$CONF_DIR"
+cp "$CNF_DIR/*" "$CONF_DIR/"
+cp "SCRIPTS/*" "$SCRIPT_DIR/"
