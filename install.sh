@@ -1,12 +1,6 @@
 #!/bin/bash
 
 
-
-
-
-
-
-
 if [ ! "$(id -u)" -eq 0 ]; then
     echo "Из под sudo скрип запускай простофиля"
     exit 1
@@ -30,7 +24,7 @@ esac
 
 CONF_DIR="$HOME/.config"
 SCRIPT_DIR="$HOME/.scripts"
-BL_PKG=(gamescope steam labwc rofi-wayland waybar nemo btop)
+BL_PKG=(gamescope steam labwc rofi-wayland waybar nemo btop plymouth ly)
 
 
 if [ ! -d $SCRIPT_DIR ]; then
