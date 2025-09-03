@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
-
 <!--
   This file contains all supported config elements & attributes with
   default values.
 -->
-
 <labwc_config>
-
   <core>
     <decoration>server</decoration>
     <gap>0</gap>
@@ -17,7 +14,6 @@
     <xwaylandPersistence>no</xwaylandPersistence>
     <primarySelection>yes</primarySelection>
   </core>
-
   <placement>
     <policy>cascade</policy>
     <!--
@@ -26,14 +22,13 @@
       <cascadeOffset x="40" y="30" />
     -->
   </placement>
-
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Breeze-Dark</name>
-    <icon></icon>
+    <icon/>
     <fallbackAppIcon>labwc</fallbackAppIcon>
     <titlebar>
-      <layout></layout>
+      <layout/>
       <showTitle>no</showTitle>
     </titlebar>
     <cornerRadius>8</cornerRadius>
@@ -42,14 +37,12 @@
     <dropShadowsOnTiled>no</dropShadowsOnTiled>
     <font name="Iosevka" size="14"/>
   </theme>
-
-  <windowSwitcher show="yes" preview="yes" outlines="no" allWorkspaces="no">
-      <fields>
-        <field content="icon" width="10%" />
-        <field content="title" width="90%" />
-      </fields>
-    </windowSwitcher>
-
+  <windowSwitcher show="yes" preview="yes" outlines="yes">
+    <fields>
+      <field content="icon" width="10%"/>
+      <field content="title" width="90%"/>
+    </fields>
+  </windowSwitcher>
   <!--
     Many other kinds of content are supported in the window switcher like below.
     Some contents are fixed-length and others are variable-length.
@@ -81,7 +74,6 @@
       </fields>
     </windowSwitcher>
   -->
-
   <!-- edge strength is in pixels -->
   <resistance>
     <screenEdgeStrength>20</screenEdgeStrength>
@@ -91,7 +83,6 @@
     <!-- resistance for vertically/horizontally maximized windows -->
     <unMaximizeThreshold>150</unMaximizeThreshold>
   </resistance>
-
   <resize>
     <!-- Show a simple resize and move indicator -->
     <popupShow>Never</popupShow>
@@ -99,7 +90,6 @@
     <drawContents>yes</drawContents>
     <!-- Borders are effectively 8 pixels wide regardless of visual appearance -->
     <minimumArea>8</minimumArea>
-
     <!--
       Set cornerRange to a positive value to increase the size of corner
       regions for mouse actions and diagonal window resizing. When omitted,
@@ -108,24 +98,21 @@
       <cornerRange>8</cornerRange>
     -->
   </resize>
-
   <focus>
-    <followMouse>no</followMouse>
+    <followMouse>yes</followMouse>
     <followMouseRequiresMovement>yes</followMouseRequiresMovement>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
-
   <snapping>
     <!-- Set range to 0 to disable window snapping completely -->
     <range>10</range>
     <cornerRange>50</cornerRange>
     <overlay enabled="yes">
-      <delay inner="500" outer="500" />
+      <delay inner="500" outer="500"/>
     </overlay>
     <topMaximize>yes</topMaximize>
     <notifyClient>always</notifyClient>
   </snapping>
-
   <!--
     Workspaces can be configured like this:
     <desktops>
@@ -168,7 +155,6 @@
       <name>3</name>
     </names>
   </desktops>
-
   <!--
     <margin> can be used to reserve space where new/maximized/tiled
     windows will not be placed. Clients using layer-shell protocol reserve
@@ -179,9 +165,8 @@
  <margin top="" bottom="" left="" right="" output="" />
    
   -->
- <margin top="" bottom="10" left="10" right="10" output="HDMI-A-1" />
- <margin top="" bottom="" left="" right="" output="HDMI-A-2" />
-
+  <margin top="" bottom="10" left="10" right="10" output="HDMI-A-1"/>
+  <margin top="" bottom="" left="" right="" output="HDMI-A-2"/>
   <!-- Percent based regions based on output usable area, % char is required -->
   <!--
     <regions>
@@ -196,7 +181,6 @@
       <region name="bottom-right" x="50%" y="50%" height="50%"  width="50%"  />
     </regions>
   -->
-
   <!--
     Keybind actions are specified in labwc-actions(5)
     The following keybind modifiers are supported:
@@ -220,94 +204,110 @@
     <repeatRate>25</repeatRate>
     <repeatDelay>600</repeatDelay>
     <keybind key="W-Tab">
-      <action name="NextWindow" />
+      <action name="NextWindow"/>
     </keybind>
     <keybind key="W-d">
-        <action name="ForEach">
-            <query>
+      <action name="ForEach">
+        <query>
             </query>
-            <then>
-                <action name="Iconify"/>
-            </then>
-        </action>
+        <then>
+          <action name="Iconify"/>
+        </then>
+      </action>
     </keybind>
-
     <keybind key="A-Tab">
-      <action name="NextWindow" />
+      <action name="NextWindow"/>
+    </keybind>
+    <keybind key="W-S-Down">
+      <action name="Iconify"/>
     </keybind>
     <keybind key="W-Return">
-      <action name="Execute" command="lab-sensible-terminal" />
+      <action name="Execute" command="lab-sensible-terminal"/>
     </keybind>
     <keybind key="W-S-r">
-      <action name="Execute" command="labwc -r" />
+      <action name="Execute" command="labwc -r"/>
+    </keybind>
+    <keybind key="Print">
+      <action name="Execute" command="~/.scripts/scren.sh"/>
     </keybind>
     <keybind key="W-S-w">
-      <action name="Execute" command="pkill waybar" />
-      <action name="Execute" command="waybar" />
+      <action name="Execute" command="pkill waybar"/>
+      <action name="Execute" command="waybar"/>
     </keybind>
     <keybind key="C-A-t">
-      <action name="Execute" command="kitty" />
+      <action name="Execute" command="kitty"/>
+    </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <command>kitty -o background_tint=1 -e btop</command>
+      </action>
+    </keybind>
+    <keybind key="ISO_Next_Group">
+      <action name="Execute" command="~/.scripts/switch_layout.sh"/>
     </keybind>
     <keybind key="W-v">
-      <action name="Execute" command="vesktop" />
+      <action name="Execute" command="vesktop"/>
     </keybind>
     <keybind key="W-e">
-      <action name="Execute" command="emacs -mm" />
+      <action name="Execute" command="emacs -mm"/>
     </keybind>
-    <keybind key="W-s">
-      <action name="Execute" command="~/.scripts/rofi_exec.sh launcher" />
+    <keybind key="Super_L" onRelease="yes">
+      <action name="Execute" command="~/.scripts/rofi_exec.sh launcher"/>
     </keybind>
     <keybind key="W-x">
-      <action name="Execute" command="~/.scripts/rofi_exec.sh powermenu" />
+      <action name="Execute" command="~/.scripts/rofi_exec.sh powermenu"/>
     </keybind>
     <keybind key="W-w">
-      <action name="Execute" command="firefox" />
+      <action name="Execute" command="firefox"/>
     </keybind>
     <keybind key="W-f">
-      <action name="Execute" command="nemo" />
+      <action name="Execute" command="nemo"/>
     </keybind>
     <keybind key="W-c">
-      <action name="Close" />
+      <action name="Close"/>
     </keybind>
     <keybind key="W-Up">
-      <action name="ToggleMaximize" />
+      <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="W-S-Up">
+      <action name="Fullscren"/>
     </keybind>
     <keybind key="W-Left">
-      <action name="SnapToEdge" direction="left" />
+      <action name="SnapToEdge" direction="left"/>
     </keybind>
     <keybind key="W-Right">
-      <action name="SnapToEdge" direction="right" />
+      <action name="SnapToEdge" direction="right"/>
     </keybind>
     <keybind key="F11">
-      <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw" />
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw"/>
     </keybind>
     <keybind key="F12">
-      <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw" />
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw"/>
     </keybind>
     <keybind key="W-Down">
-      <action name="ResizeTo" width="1024" height="800" />
+      <action name="ResizeTo" width="1024" height="800"/>
       <action name="AutoPlace" policy="center"/>
     </keybind>
     <keybind key="A-Space">
-      <action name="ShowMenu" menu="client-menu" atCursor="no" />
+      <action name="ShowMenu" menu="client-menu" atCursor="no"/>
     </keybind>
     <keybind key="XF86_AudioLowerVolume">
-      <action name="Execute" command="amixer sset Master 5%-" />
+      <action name="Execute" command="amixer sset Master 5%-"/>
     </keybind>
     <keybind key="XF86_AudioRaiseVolume">
-      <action name="Execute" command="amixer sset Master 5%+" />
+      <action name="Execute" command="amixer sset Master 5%+"/>
     </keybind>
     <keybind key="XF86_AudioMute">
-      <action name="Execute" command="amixer sset Master toggle" />
+      <action name="Execute" command="amixer sset Master toggle"/>
     </keybind>
     <keybind key="XF86_MonBrightnessUp">
-      <action name="Execute" command="brightnessctl set +10%" />
+      <action name="Execute" command="brightnessctl set +10%"/>
     </keybind>
     <keybind key="XF86_MonBrightnessDown">
-      <action name="Execute" command="brightnessctl set 10%-" />
+      <action name="Execute" command="brightnessctl set 10%-"/>
     </keybind>
-  <!-- SnapToRegion via W-Numpad -->
-  <!--
+    <!-- SnapToRegion via W-Numpad -->
+    <!--
     <keybind key="W-KP_7">
       <action name="SnapToRegion" region="top-left" />
     </keybind>
@@ -336,8 +336,8 @@
       <action name="SnapToRegion" region="bottom-right" />
     </keybind>
   -->
-  <!-- keybind for client-list-combined-menu - will center in middle of screen -->
-  <!--
+    <!-- keybind for client-list-combined-menu - will center in middle of screen -->
+    <!--
     <keybind key="W-Space">
       <action name="ShowMenu" menu="client-list-combined-menu" />
       <position>
@@ -347,7 +347,6 @@
     </keybind>
   -->
   </keyboard>
-
   <!--
     Multiple <mousebind> can exist within one <context>
     Multiple <actions> can exist within one <mousebind>
@@ -359,7 +358,7 @@
     a custom menu when right-clicking on your desktop. See rc.xml for an
     example.
   -->
- <mouse>
+  <mouse>
     <dragThreshold>4</dragThreshold>
     <doubleClickTime>200</doubleClickTime>
     <screenEdgeWarpTime>400</screenEdgeWarpTime>
@@ -617,7 +616,6 @@
       </mousebind>
     </context>
   </mouse>
-
   <!--
     A touch configuration can be bound to a specific device. If device
     name is left empty, the touch configuration applies to all touch
@@ -632,7 +630,6 @@
     translated to mouse button and motion events.
   -->
   <touch deviceName="" mapToOutput="" mouseEmulation="no"/>
-
   <!--
     The tablet cursor movement can be restricted to a single output.
     If output is left empty or the output does not exists, the tablet
@@ -660,12 +657,11 @@
   -->
   <tablet mapToOutput="" rotate="0" mouseEmulation="no">
     <!-- Active area dimensions are in mm -->
-    <area top="0.0" left="0.0" width="0.0" height="0.0" />
-    <map button="Tip" to="Left" />
-    <map button="Stylus" to="Right" />
-    <map button="Stylus2" to="Middle" />
+    <area top="0.0" left="0.0" width="0.0" height="0.0"/>
+    <map button="Tip" to="Left"/>
+    <map button="Stylus" to="Right"/>
+    <map button="Stylus2" to="Middle"/>
   </tablet>
-
   <!--
     All tablet tools, except of type mouse and lens, use absolute
     positioning by default. The *motion* attribute allows to set tools
@@ -674,8 +670,7 @@
     a value lower than 1.0 decreases the speed, using a value greater than
     1.0 increases the speed of the cursor.
   -->
-  <tabletTool motion="absolute" relativeMotionSensitivity="1.0" />
-
+  <tabletTool motion="absolute" relativeMotionSensitivity="1.0"/>
   <!--
     The *category* attribute is optional and can be set to touch, touchpad,
     non-touch, default or the name of a device. You can obtain device names by
@@ -695,25 +690,24 @@
   -->
   <libinput>
     <device category="default">
-      <naturalScroll></naturalScroll>
-      <leftHanded></leftHanded>
-      <pointerSpeed></pointerSpeed>
-      <accelProfile></accelProfile>
+      <naturalScroll/>
+      <leftHanded/>
+      <pointerSpeed/>
+      <accelProfile/>
       <tap>yes</tap>
-      <tapButtonMap></tapButtonMap>
-      <tapAndDrag></tapAndDrag>
-      <dragLock></dragLock>
-      <threeFingerDrag></threeFingerDrag>
-      <middleEmulation></middleEmulation>
-      <disableWhileTyping></disableWhileTyping>
-      <clickMethod></clickMethod>
-      <scrollMethod></scrollMethod>
-      <sendEventsMode></sendEventsMode>
-      <calibrationMatrix></calibrationMatrix>
+      <tapButtonMap/>
+      <tapAndDrag/>
+      <dragLock/>
+      <threeFingerDrag/>
+      <middleEmulation/>
+      <disableWhileTyping/>
+      <clickMethod/>
+      <scrollMethod/>
+      <sendEventsMode/>
+      <calibrationMatrix/>
       <scrollFactor>1.0</scrollFactor>
     </device>
   </libinput>
-
   <!--
     # Window Rules
     #   - Criteria can consist of 'identifier', 'title', 'sandboxEngine' or
@@ -757,15 +751,14 @@
       </windowRule>
     </windowRules>
   -->
-    <windowRules>
-      <windowRule identifier="*" serverDecoration="no">
+  <windowRules>
+    <windowRule identifier="*" serverDecoration="no">
       </windowRule>
-    </windowRules>
+  </windowRules>
   <menu>
     <ignoreButtonReleasePeriod>250</ignoreButtonReleasePeriod>
     <showIcons>yes</showIcons>
   </menu>
-
   <!--
     Magnifier settings
     'width' sets the width in pixels of the magnifier window.
@@ -783,5 +776,4 @@
     <increment>0.2</increment>
     <useFilter>true</useFilter>
   </magnifier>
-
 </labwc_config>
