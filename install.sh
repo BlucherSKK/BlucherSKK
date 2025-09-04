@@ -24,7 +24,7 @@ esac
 
 CONF_DIR="$HOME/.config"
 SCRIPT_DIR="$HOME/.scripts"
-BL_PKG=(gamescope steam labwc rofi-wayland waybar nemo btop plymouth ly)
+BL_PKG=(gamescope steam labwc rofi-wayland waybar nemo btop plymouth ly mako xdg-desktop-portal-wlr)
 
 
 if [ ! -d $SCRIPT_DIR ]; then
