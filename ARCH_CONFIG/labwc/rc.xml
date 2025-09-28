@@ -278,11 +278,17 @@
     <keybind key="W-Right">
       <action name="SnapToEdge" direction="right"/>
     </keybind>
-    <keybind key="F11">
-      <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw"/>
+    <keybind key="F10">
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw ++"/>
     </keybind>
     <keybind key="F12">
-      <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw"/>
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw ++"/>
+    </keybind>
+    <keybind key="F9">
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw --"/>
+    </keybind>
+    <keybind key="F11">
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw --"/>
     </keybind>
     <keybind key="W-Down">
       <action name="ResizeTo" width="1024" height="800"/>

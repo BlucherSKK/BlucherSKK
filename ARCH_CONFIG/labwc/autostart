@@ -1,6 +1,13 @@
 # wallpaper daemon
 swww-daemon &
 
+#monitors
+wlr-randr --output HDMI-A-2 --pos 2332,0
+wlr-randr --output HDMI-A-1 --scale 1.1 --pos 0,0
+
+# select random wallpaper
+$HOME/.scripts/random_wallpaper.sh sfw random &
+
 # notifis
 mako &
 
@@ -13,7 +20,3 @@ gsettings set org.gnome.desktop.interface font-name "Iosevka 13"
 
 # polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-#monitors
-wlr-randr --output HDMI-A-2 --pos 2332,0
-wlr-randr --output HDMI-A-1 --scale 1.1 --pos 0,0
