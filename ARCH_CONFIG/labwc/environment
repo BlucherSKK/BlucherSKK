@@ -75,5 +75,7 @@ GTK_THEME=Breeze-Dark
 ## resize the output to match the client resolution.
 ##
 
+#QT_QPA_PLATFORMTHEME=qt5ct
+
 #LABWC_FALLBACK_OUTPUT=NOOP-fallback
 
