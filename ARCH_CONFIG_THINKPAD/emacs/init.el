@@ -1,3 +1,4 @@
+
 ;;; -*- lexical-binding: t -*-
 
 ;; Репозитории пакетов
@@ -7,12 +8,19 @@
 ;; Load my extanthion file
 (load-file "~/.emacs.d/wellcum.el")
 (load-file "~/.emacs.d/keybinds.el")
+(load-file "~/.emacs.d/blpm.el")
+(load-file "~/.emacs.d/blbackend.el")
+
 
 ;; Wellcum buffer
 (setq initial-buffer-choice 'draw-torus)
 (defun draw-torus ()
   (interactive)
   (draw-torus-animation))
+(add-hook 'bl-find-project-hook
+          (lambda ()
+            (when (get-buffer "*Wellcum*")
+              (kill-buffer "*Wellcum*"))))
 (add-hook 'find-file-hook
           (lambda ()
             (when (get-buffer "*Wellcum*")
@@ -22,15 +30,16 @@
 (require 'elcord)
 (elcord-mode) 
 
-;; Настройка treemacs
-(require 'treemacs)
-(global-set-key (kbd "C-<tab> RET")
-                (lambda ()
-                  (interactive)
-                  (treemacs)
-                  ;; Переключаемся в наибольшее окно
-                  (next-window)))
-(global-set-key (kbd "C-<tab> d") #'treemacs-select-directory)
+;; автосейвы
+(run-at-time 0 60 (lambda ()
+  (when (buffer-file-name)
+    (save-buffer))))
+
+
+;; Настройки neotree
+(require 'neotree)
+(require 'nerd-icons)
+(setq neo-theme (if (display-graphic-p) 'nerd-icons 'arrow))
 
 ;; Изменение префикса для lsp-mode
 (setq lsp-keymap-prefix "s-l")
@@ -52,6 +61,7 @@
 (setq lsp-ui-doc-delay 0.5) ; Задержка перед показом (в секундах)
 (setq lsp-ui-doc-include-signature t) ; Включать сигнатуру функции
 (setq lsp-ui-doc-max-width 150) ; Максимальная ширина окна
+
 (setq lsp-ui-doc-max-height 20) ; Максимальная высота окна
 
 ;; автодополнение
@@ -68,6 +78,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
  '(beacon-blink-delay 0.05)
  '(beacon-blink-duration 0.2)
  '(beacon-mode t)
@@ -97,16 +108,22 @@
  '(indent-tabs-mode nil)
  '(lsp-eldoc-render-all t)
  '(lsp-ui-doc-position 'top)
+ '(make-backup-files nil)
  '(menu-bar-mode nil)
+ '(neo-autorefresh t)
+ '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.#m*"))
+ '(neo-window-position 'left)
  '(package-selected-packages
    '(abyss-theme adwaita-dark-theme afternoon-theme ample-theme
                  ancient-one-dark-theme apropospriate-theme
                  arduino-mode atom-dark-theme atom-one-dark-theme
                  company company-c-headers company-quickhelp dashboard
-                 dirvish elcord enlight general key-assist lsp-mode
-                 lsp-ui rust-mode treemacs use-package))
+                 dirvish elcord enlight general gitlab-ci-mode ini
+                 key-assist lsp-mode lsp-ui neotree nerd-icons
+                 rust-mode use-package))
  '(recentf-mode t)
  '(scroll-bar-mode nil)
+ '(scroll-margin 0)
  '(show-trailing-whitespace nil)
  '(standard-indent 1)
  '(tab-bar-mode nil)
@@ -118,7 +135,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#25202a" :foreground "#cfccd2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight medium :height 130 :width expanded :foundry "UKWN" :family "Iosevka"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#25202a" :foreground "#cfccd2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight medium :height 140 :width expanded :foundry "UKWN" :family "Iosevka"))))
  '(company-tooltip ((t (:background "dark slate blue" :foreground "light pink"))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :background "dark violet"))))
  '(company-tooltip-selection ((t (:inherit company-tooltip :background "dark magenta")))))

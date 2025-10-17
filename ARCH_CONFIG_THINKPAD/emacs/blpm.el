@@ -5,8 +5,16 @@
 (require 'ini)
 (require 'cl-lib)
 
+;; константы
+(defvar main-projects-file "~/.emacs.d/projects.ini")
+
 ;; Настройка neotree для отображения справа
 (setq neo-window-position 'right)
+(defvar bl-find-project-hook nil
+  "Hook run after opening a project.")
+(defvar bl-project-update nil
+  "Hook run if you add or delet project from projects.ini")
+;; hooks
 
 (cl-defstruct
     (bl-project
@@ -14,6 +22,18 @@
      (:constructor new-project
                    (name path &optional (entry-point "try"))))
   name path entry-point)
+
+(defun bl-add-project ()
+  (interactive)
+  (let ((name (read-string "Название нового проекта: "))
+        (path (read-string "Путь до основной дирруктории проекта: "))
+        (entry-point (read-string "Путь до майн файла: ")))
+  (with-temp-buffer
+    (insert (format "[%s]\npath=%s\nentry-point=%s\n" name path entry-point))
+    (write-region (point-min) (point-max) main-projects-file 'append))
+  (message (format "Проект %s успешно добавлен" name))
+  (run-hooks 'bl-project-update)
+  ))
 
 (defun bl-open-project (project)
   (if (string= (bl-project-entry-point project) "try")
@@ -23,8 +43,6 @@
   (neotree-dir (bl-project-path project))
   )
 
-(defvar bl-find-project-hook nil
-  "Hook run after opening a project.")
 
 (defun parse-ini-to-bl-projects (file)
   "Читает INI-файл с помощью ini.el и возвращает список структур bl-project.
