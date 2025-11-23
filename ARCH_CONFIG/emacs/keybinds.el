@@ -1,10 +1,7 @@
 ;; keybinds.el -- file with custom keybinds
-
-
 ;; Key binds
 ;; buffers movements
 (global-set-key (kbd "C-a") #'previous-buffer)
-(global-unset-key (kbd "C-d"))
 (global-set-key (kbd "C-d") #'next-buffer)
 
 ;; copy, paste and "copy with delete
@@ -26,7 +23,7 @@
                   (interactive)
                   (let ((term-buffer (get-buffer "*terminal*")))
                     (if (and term-buffer (get-buffer-window term-buffer t))
-                        ;; Если терминал открыт, закрываем окно и убиваем буфер без подтверждения
+                        ;; Если терминал открыт, закрываем окно и убиваем буфер без подтвержден
                         (progn
                           (delete-window (get-buffer-window term-buffer t))
                           (let ((kill-buffer-query-functions nil)) ; Отключаем подтверждение
@@ -36,6 +33,13 @@
                         (split-window-below (/ (window-total-height) 2))
                         (other-window 1)
                         (term "/bin/zsh"))))))
+
+;;force rebindings for other modes
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (define-key c-mode-base-map (kbd "C-d") #'previous-buffer)))
+
+;;(global-set-key (kbd "C-S-left") #')
 
 ;;word movements
 (global-set-key (kbd "M-d") #'forward-word)
