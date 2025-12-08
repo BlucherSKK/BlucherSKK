@@ -1,12 +1,13 @@
+
+#monitors
+wlr-randr --output HDMI-A-2 --mode 1680x1050@59.882999 --pos 2560,0
+wlr-randr --output DP-2 --mode 2560x1440@75.123001 --scale 1 --pos 0,0
+
 # wallpaper daemon
 swww-daemon &
 
-#monitors
-wlr-randr --output HDMI-A-2 --pos 2332,0
-wlr-randr --output HDMI-A-1 --scale 1.1 --pos 0,0
-
 # select random wallpaper
-$HOME/.scripts/random_wallpaper.sh sfw random &
+# $HOME/.scripts/random_wallpaper.sh sfw random &
 
 # notifis
 mako &

@@ -1,18 +1,26 @@
+
 ;;; -*- lexical-binding: t -*-
 
 ;; Репозитории пакетов
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(require 'package)
 (package-initialize)
 
 ;; Load my extanthion file
 (load-file "~/.emacs.d/wellcum.el")
 (load-file "~/.emacs.d/keybinds.el")
+(load-file "~/.emacs.d/blpm.el")
+(load-file "~/.emacs.d/blbackend.el")
 
 ;; Wellcum buffer
 (setq initial-buffer-choice 'draw-torus)
 (defun draw-torus ()
   (interactive)
   (draw-torus-animation))
+(add-hook 'bl-find-project-hook
+          (lambda ()
+            (when (get-buffer "*Wellcum*")
+              (kill-buffer "*Wellcum*"))))
 (add-hook 'find-file-hook
           (lambda ()
             (when (get-buffer "*Wellcum*")
@@ -20,17 +28,20 @@
 
 ;; Настройка elcord
 (require 'elcord)
-(elcord-mode) 
+(elcord-mode)
 
-;; Настройка treemacs
-(require 'treemacs)
-(global-set-key (kbd "C-<tab> RET")
-                (lambda ()
-                  (interactive)
-                  (treemacs)
-                  ;; Переключаемся в наибольшее окно
-                  (next-window)))
-(global-set-key (kbd "C-<tab> d") #'treemacs-select-directory)
+
+
+;; автосейвы
+(run-at-time 0 60 (lambda ()
+  (when (buffer-file-name)
+    (save-buffer))))
+
+
+;; Настройки neotree
+(require 'neotree)
+(require 'nerd-icons)
+(setq neo-theme (if (display-graphic-p) 'nerd-icons 'arrow))
 
 ;; Изменение префикса для lsp-mode
 (setq lsp-keymap-prefix "s-l")
@@ -40,27 +51,17 @@
 (add-hook 'rust-mode-hook #'lsp)
 (add-hook 'typescript-mode-hook #'lsp)
 (add-hook 'c-mode-hook #'lsp)
-(setq lsp-eldoc-enable-hover nil) ; Отключает вывод документации в минибуферл
-(setq lsp-eldoc-render-all nil)    ; Отключает рендеринг eldoc
 
 (require 'lsp-ui)
-(add-hook 'lsp-mode-hook #'lsp-ui-mode)
-;; Настройки lsp-ui-doc для всплывающих окон
+(add-hook 'lsp-mode-hook #'lsp-ui-mode);; Настройки lsp-ui-doc для всплывающих окон
 (setq lsp-ui-doc-enable t) ; Включает всплывающие окна с документацией
 (setq lsp-ui-doc-show-with-cursor t) ; Показывать документацию при наведении курсора
 (setq lsp-ui-doc-position 'at-point) ; Позиция окна (at-point, top, bottom)
 (setq lsp-ui-doc-delay 0.5) ; Задержка перед показом (в секундах)
 (setq lsp-ui-doc-include-signature t) ; Включать сигнатуру функции
 (setq lsp-ui-doc-max-width 150) ; Максимальная ширина окна
+
 (setq lsp-ui-doc-max-height 20) ; Максимальная высота окна
-
-;; автодополнение
-(require 'company)
-(add-hook 'lsp-mode-hook #'global-company-mode)
-(setq company-idle-delay 0.2)
-
-(require 'company-quickhelp)
-(add-hook 'company-mode-hook #'company-quickhelp-mode)
 
 ;; настройки
 (custom-set-variables
@@ -68,15 +69,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
  '(beacon-blink-delay 0.05)
  '(beacon-blink-duration 0.2)
  '(beacon-mode t)
  '(c-basic-offset 4)
+ '(company-minimum-prefix-length 1)
  '(company-quickhelp-color-background "dark slate gray")
  '(company-quickhelp-color-foreground "sky blue")
  '(company-quickhelp-delay 0.3)
  '(company-quickhelp-mode t)
- '(company-tooltip-limit 30)
+ '(company-require-match nil)
+ '(company-tooltip-limit 100)
+ '(company-tooltip-maximum-width 300)
+ '(company-tooltip-minimum 1)
  '(custom-enabled-themes '(atom-dark))
  '(custom-safe-themes
    '("ad7d874d137291e09fe2963babc33d381d087fa14928cb9d34350b67b6556b6d"
@@ -93,20 +99,28 @@
      default))
  '(delete-selection-mode t)
  '(electric-pair-mode t)
+ '(global-company-mode t)
  '(global-display-line-numbers-mode t)
  '(indent-tabs-mode nil)
  '(lsp-eldoc-render-all t)
  '(lsp-ui-doc-position 'top)
+ '(make-backup-files nil)
  '(menu-bar-mode nil)
+ '(neo-autorefresh t)
+ '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.#m*"))
+ '(neo-window-position 'left)
  '(package-selected-packages
-   '(abyss-theme adwaita-dark-theme afternoon-theme ample-theme
-                 ancient-one-dark-theme apropospriate-theme
-                 arduino-mode atom-dark-theme atom-one-dark-theme
-                 company company-c-headers company-quickhelp dashboard
-                 dirvish elcord enlight general key-assist lsp-mode
-                 lsp-ui rust-mode treemacs use-package))
+   '(aas abyss-theme ace-window adwaita-dark-theme afternoon-theme
+         ample-theme ancient-one-dark-theme apropospriate-theme
+         arduino-mode atom-dark-theme atom-one-dark-theme avy cfrs
+         company company-c-headers company-quickhelp dash dashboard
+         dirvish elcord enlight f general gitlab-ci-mode ht hydra ini
+         key-assist lsp-mode lsp-ui markdown-mode neotree nerd-icons
+         posframe rust-mode s spinner typescript-mode use-package
+         yaml-mode))
  '(recentf-mode t)
  '(scroll-bar-mode nil)
+ '(scroll-margin 0)
  '(show-trailing-whitespace nil)
  '(standard-indent 1)
  '(tab-bar-mode nil)
@@ -118,7 +132,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#25202a" :foreground "#cfccd2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight medium :height 130 :width expanded :foundry "UKWN" :family "Iosevka"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#25202a" :foreground "#cfccd2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight medium :height 140 :width expanded :foundry "UKWN" :family "Iosevka"))))
  '(company-tooltip ((t (:background "dark slate blue" :foreground "light pink"))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :background "dark violet"))))
  '(company-tooltip-selection ((t (:inherit company-tooltip :background "dark magenta")))))
+

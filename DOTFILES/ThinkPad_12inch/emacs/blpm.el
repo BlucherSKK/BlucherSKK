@@ -25,7 +25,24 @@
 
 (defvar bl-find-project-hook nil
   "Hook run after opening a project.")
-
+(defvar bl-refresh-project-hook nil
+  "This hook will call when add new projects")
+;;_________________________________________________
+(defun blpm-append-project-to-file (file str1 str2 str3)
+  "Append a block to FILE:
+[STR1]
+path=STR2
+entry-point=STR3"
+  (with-temp-buffer
+    (insert (format "[%s]\npath=%s\nentry-point=%s\n" str1 str2 str3))
+    (let ((data (buffer-string)))
+      (with-temp-buffer
+        ;; Создаём/открываем целевой файл в двоичном режиме, чтобы корректно дописать
+        (insert-file-contents-literally file nil nil nil t)
+        (goto-char (point-max))
+        (insert data)
+        (write-region (point-min) (point-max) file nil 'silent)))))
+;;_________________________________________________
 (defun parse-ini-to-bl-projects (file)
   "Читает INI-файл с помощью ini.el и возвращает список структур bl-project.
 Каждая секция [name] преобразуется в объект bl-project с полями name, path и entry-point.

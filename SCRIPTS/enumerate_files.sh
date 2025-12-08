@@ -4,9 +4,9 @@ DIRECTORY="$1"
 TEXT="$2"
 
 unique_name() {
-  local dir="$1"; 
-  local forbid="$2"; 
-  local len="${3:-12}"; 
+  local dir="$1";
+  local forbid="$2";
+  local len="${3:-12}";
   local suffix="${4:-}";
   local max_len=32 base name tries=0 max_base
   if [[ -z "$dir" || ! -d "$dir" ]]; then
@@ -69,7 +69,7 @@ for file in "$DIRECTORY"/*; do
         else
             # Преобразуем изображение в PNG с помощью ffmpeg
             ffmpeg -i "$file" "$new_file" -y
-            
+
             # Проверяем, успешно ли прошло преобразование
             if [[ $? -eq 0 ]]; then
                 echo "Преобразовано: $file -> $new_file"
