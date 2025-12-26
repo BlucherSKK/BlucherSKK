@@ -9,6 +9,9 @@
 (global-set-key (kbd "C-S-v") #'yank)
 (global-set-key (kbd "C-S-x") #'kill-region)
 
+;;delit line
+(global-set-key (kbd "C-S-q") #'delete-blank-lines)
+
 ;; neotree
 (global-set-key (kbd "C-<tab> RET") #'neotree)
 (global-set-key (kbd "C-<tab> d") #'neotree-dir)

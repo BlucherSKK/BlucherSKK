@@ -27,6 +27,9 @@
          ((string-prefix-p "while" arg)
           (push "while [CONDITION]\ndo\n\t[COMMANDS]\ndone" my-candidates))
 
+         ((string-prefix-p "sep" arg)
+          (push "#[][][][][][][][][][][][][][]" my-candidates))
+
          ;; дефолтный вариант
          (t nil)))
       (nreverse my-candidates)))
@@ -52,8 +55,11 @@
            (cond
              ((string-prefix-p "fn" arg)
               '("fn name(arg: _) -> _" "{" "" "}"))
-             ((string-prefix-p "async" arg)
-              '("async fn [name]([args]) -> [return]{\n[body]\n}\n"))))))
+             ((string-prefix-p "sep" arg)
+              '("//=====================================\n"))
+             ((string-prefix-p "mat" arg)
+              '("match [cond]{\n\t[case] => [operator]\n}\n"))
+             ))))
      (all-completions arg my-candidates))))
 
 (add-hook 'rust-mode-hook
@@ -63,6 +69,7 @@
                               company-backends))))
 ;;_________________________________________________
 (defun bl-cpp-company-backend (command &optional arg &rest ignored)
+  "Бекегд для компани в c++/c"
   (interactive (list 'interactive))
   (cond
    ;; префикс — это то что компани будет подставлять как основу для поиска кандидатов
@@ -72,15 +79,26 @@
    ((eq command 'candidates)
     (let (my-candidates)
       (when (and arg (stringp arg))
+        ;; switch-case по префиксам
         (cond
-         ((string-prefix-p "sep" arg)
-          (push "//_________________________________________________" my-candidates))
+         ((string-prefix-p "sep_" arg)
+          (push "\\_____________________________________________\n" my-candidates))
+         ((string-prefix-p "sep-" arg)
+          (push "\\----------------------------\n" my-candidates))
+         ((string-prefix-p "/**" arg)
+          (push "/**\n * \n */" my-candidates))
+         ((string-prefix-p "@p" arg)
+          (push "@param" my-candidates))
+         ((string-prefix-p "@b" arg)
+          (push "@brief" my-candidates))
+         ((string-prefix-p "@r" arg)
+          (push "@return" my-candidates))
          
          ;; дефолтный вариант
          (t nil)))
       (nreverse my-candidates)))
 
-   ;; мета-информация, отображение, и т.д. — optional
+   ;; мета-информация, отображение, и т.д. — optionalx
    ((eq command 'meta)
     (format "Snippet for %s" arg))
 
@@ -92,41 +110,36 @@
                         (cons '(bl-cpp-company-backend :separate company-capf)
                               company-backends))))
 ;;_________________________________________________
-(defun bl-elisp-backend (command &optional arg &rest _ignored)
-  "Company backend для elisp: возвращает 0, если префикс не совпадает с \"sep\"."
+(defun bl-elisp-backend (command &optional arg &rest ignored)
+  "Бекегд для компани в shell скриптах"
   (interactive (list 'interactive))
-  (cl-case command
-    (interactive (company-begin-backend 'bl-elisp-backend))
+  (cond
+   ;; префикс — это то что компани будет подставлять как основу для поиска кандидатов
+   ((eq command 'prefix)
+    (company-grab-symbol))
 
-    ;; префикс: возвращаем nil если нет символа под курсором
-    ;; но если символ есть и он не начинается с "sep" — возвращаем 0
-    (prefix
-     (let ((sym (company-grab-symbol)))
-       (cond
-        ((not (and (stringp sym) (not (string-empty-p sym)))) nil)
-        ((not (string-prefix-p "sep" sym)) 0)
-        (t sym))))
+   ((eq command 'candidates)
+    (let (my-candidates)
+      (when (and arg (stringp arg))
+        ;; switch-case по префиксам
+        (cond
+         ((string-prefix-p "sep" arg)
+          (push ";;_____________________________________________" my-candidates))
+         ((string-prefix-p "sepg" arg)
+          (push ";;#######" my-candidates))
+         ;; дефолтный вариант
+         (t nil)))
+      (nreverse my-candidates)))
 
-    ;; кандидаты: возвращаем nil, если нет совпадений
-    (candidates
-     (when (and arg (stringp arg))
-       (let (cands)
-         (when (string-prefix-p "sep" arg)
-           (push ";;_________________________________________________" cands))
-         (when cands
-           (nreverse cands))))) ; если cands пустой — вернёт nil
+   ;; мета-информация, отображение, и т.д. — optionalx
+   ((eq command 'meta)
+    (format "Snippet for %s" arg))
+   (t nil)))
 
-    ;; краткое описание элемента
-    (meta
-     (format "Snippet for %s" arg))
-
-    ;; дополнительные команды (рекомендуется поддерживать)
-    (no-cache t)
-    (ignore-case t)
-    (t nil)))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq-local company-backends
                         (cons '(bl-elisp-backend :separate company-capf)
                               company-backends))))
+;;_____________________________________________

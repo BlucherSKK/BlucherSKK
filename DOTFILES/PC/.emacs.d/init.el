@@ -11,6 +11,7 @@
 (load-file "~/.emacs.d/keybinds.el")
 (load-file "~/.emacs.d/blpm.el")
 (load-file "~/.emacs.d/blbackend.el")
+(load-file "~/.emacs.d/styles.el")
 
 ;; Wellcum buffer
 (setq initial-buffer-choice 'draw-torus)
@@ -29,9 +30,6 @@
 ;; Настройка elcord
 (require 'elcord)
 (elcord-mode)
-
-
-
 ;; автосейвы
 (run-at-time 0 60 (lambda ()
   (when (buffer-file-name)
@@ -110,7 +108,7 @@
  '(neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.#m*"))
  '(neo-window-position 'left)
  '(package-selected-packages
-   '(aas abyss-theme ace-window adwaita-dark-theme afternoon-theme
+   '(aas abyss-theme ace-window adwaita-dark-theme afternoon-theme all
          ample-theme ancient-one-dark-theme apropospriate-theme
          arduino-mode atom-dark-theme atom-one-dark-theme avy cfrs
          company company-c-headers company-quickhelp dash dashboard
