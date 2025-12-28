@@ -12,7 +12,7 @@
     <adaptiveSync>no</adaptiveSync>
     <allowTearing>no</allowTearing>
     <autoEnableOutputs>yes</autoEnableOutputs>
-    <reuseOutputMode>yes</reuseOutputMode>
+    <reuseOutputMode>no</reuseOutputMode>
     <xwaylandPersistence>yes</xwaylandPersistence>
     <primarySelection>yes</primarySelection>
   </core>
@@ -20,7 +20,7 @@
   <placement policy="center"/>
   
   <windowSwitcher>
-    <osd output="focused" />
+    <osd output="cursor" />
   </windowSwitcher>
   
   <resistance>
