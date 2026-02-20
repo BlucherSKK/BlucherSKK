@@ -37,7 +37,7 @@ XCURSOR_SIZE=64
 ##
 
 WLR_NO_HARDWARE_CURSORS=1
-
+MANGOHUD=0
 MOZ_ENABLE_WAYLAND=1
 
 ##
@@ -74,6 +74,8 @@ GTK_THEME=Breeze-Dark
 ## that wayvnc will detect it being a virtual output and allow clients to
 ## resize the output to match the client resolution.
 ##
+
+QT_QPA_PLATFORMTHEME=qt5ct
 
 #LABWC_FALLBACK_OUTPUT=NOOP-fallback
 

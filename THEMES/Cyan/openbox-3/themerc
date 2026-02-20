@@ -1,0 +1,91 @@
+
+#======================================
+#     Menu Settings	
+#======================================
+
+menu.title.bg: raised
+menu.title.bg.color: #4E6A6A
+menu.title.text.color: #EBCD5E
+menu.separator.color: #242424
+menu.items.bg: raised
+menu.items.bg.color: #2D2F2F
+menu.items.text.color: cyan
+menu.items.disabled.text.color: #707070
+menu.items.active.bg: flat border
+menu.items.active.bg.color: #FF8A0A
+menu.items.active.bg.border.color: #824400
+menu.items.active.text.color: #003644
+
+#======================================
+#     Focused Window Settings
+#======================================
+
+window.active.title.bg: Gradient Vertical
+window.active.title.bg.color: #18181E
+window.active.title.bg.border: #B05C00
+
+
+window.active.label.bg: parentrelative
+window.active.label.text.color: cyan
+
+window.active.button.*.image.color: cyan
+window.active.button.hover.bg: Gradient Vertical Border
+window.active.button.hover.bg.color: orange
+window.active.button.hover.bg.colorTo: red
+window.active.button.hover.bg.border.color: yellow
+window.active.button.hover.image.color: white
+
+
+window.active.handle.bg: Raised Gradient vertical
+window.active.handle.bg.color: #008AA0
+window.active.handle.bg.colorTo: #008AA
+
+window.active.grip.bg: Gradient Vertical
+window.active.grip.bg.color: cyan
+window.active.grip.bg.colorTo: #7A4C11
+
+#======================================
+#     Unfocused Window Settings
+#======================================
+
+window.inactive.title.bg: raised
+window.inactive.title.bg.color: #181818
+window.inactive.handle.bg: raised
+window.inactive.handle.bg.color: #181818
+window.inactive.grip.bg: parentrelative
+window.inactive.label.bg: parentrelative
+window.inactive.label.text.color: #181818
+window.inactive.button.*.image.color: #ffffff
+
+#======================================
+#     Global Width Settings
+#======================================
+
+padding.width: 1
+padding.height: 1
+border.width: 1
+window.handle.width: 5
+window.client.padding.width: 0
+menu.overlap.x: -5
+
+#======================================
+#     Miscellaneous Settings
+#======================================
+
+border.color: #000000
+menu.border.color: #2D2F2F
+
+#======================================
+#     Osd		
+#======================================
+
+osd.hilight.bg: flat border
+osd.hilight.bg.color: #000000
+osd.hilight.bg.border.color: cyan
+
+#======================================
+#     Title Justification
+#======================================
+
+menu.title.text.justify: center
+window.label.text.justify: center
