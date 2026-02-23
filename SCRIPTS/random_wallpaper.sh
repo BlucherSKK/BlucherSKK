@@ -2,6 +2,7 @@
 
 # Папка с обоями
 wallpapers_dir="$HOME/media/wallpapers/$1"
+safety_wallpaper="$HOME/media/wallpapers/safety.png"
 counter_file="$XDG_RUNTIME_DIR/wallpaper_counters"
 
 # Инициализация счетчиков, если файл не существует
@@ -55,6 +56,9 @@ case "$1" in
           WALP_COUNT_SFW=0
       fi
       export CURRENTLY_WALLPAPER="$wallpapers_dir/sfw_$WALP_COUNT_SFW.png"
+      ;;
+  "safety")
+	export CURRENTLY_WALLPAPER="$safety_wallpaper"
   ;;
 esac     
 
