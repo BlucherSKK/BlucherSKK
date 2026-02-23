@@ -34,6 +34,86 @@ unique_name() {
   done
 }
 
+match_max() {
+    local dir="$1"
+    local text="$2"
+    local max_n=-1
+    local max_file=""
+
+    shopt -s nullglob
+    for file in "$dir"/"$text"_*.png; do
+        filename=$(basename "$file")
+
+        if [[ "$filename" =~ ^${text}_([0-9]+)\.png$ ]]; then
+            n="${BASH_REMATCH[1]}"
+
+            if (( n > max_n )); then
+                max_n=$n
+                max_file="$file"
+            fi
+        fi
+    done
+    shopt -u nullglob
+
+    printf '%d\n' "$max_n"
+}
+
+
+combine_file() {
+    local file=$1
+    local counter=$2
+    echo "combining $file"
+    if [[ -f "$file" ]]; then
+        # Получаем расширение файла
+        extension="${file##*.}"
+
+        # Создаем новое имя файла
+        new_file="$DIRECTORY/${TEXT}_${count}.png"
+        
+        if [[ "$extension" == "png" ]]; then
+            # Если файл уже PNG, просто переименовываем
+            mv "$file" "$new_file"
+            echo "Переименован (PNG): $file -> $new_file"
+        else
+            # Преобразуем изображение в PNG с помощью ffmpeg
+            ffmpeg -i "$file" "$new_file" -y
+
+            # Проверяем, успешно ли прошло преобразование
+            if [[ $? -eq 0 ]]; then
+                echo "Преобразовано: $file -> $new_file"
+                # Удаляем оригинальный файл, если преобразование прошло успешно
+                rm "$file"
+            else
+                echo "Ошибка при преобразовании: $file"
+            fi
+        fi
+
+        ((counter++))
+    fi
+    echo counter
+}
+
+if ls "$DIRECTORY"/"$TEXT"_[0-9]*.png 1> /dev/null 2>&1; then
+    echo "Ранее файлы уже были пронумерованны"
+    count=$(match_max "$DIRECTORY" "$TEXT")
+    ((count++))
+    echo $count
+    shopt -s nullglob
+    for file in "$DIRECTORY"/*.png; do
+        filename=$(basename "$file")
+
+        [[ "$filename" =~ ^text_([0-9]+)\.png$ ]] || continue
+        
+        echo $filename
+        count=$(combine_file "$file" "$count")
+    done
+    shopt -u nullglob
+    exit 0
+else
+    echo "Ранее файлы не были пронумерованны"
+    count=0
+fi
+
 for file in "$DIRECTORY"/*; do
     if [[ -f "$file" ]]; then
         # Получаем расширение файла
@@ -49,7 +129,7 @@ done
 
 
 
-count=0
+
 
 # mkdir "$DIRECTORY/becup"
 # cp -r "$DIRECTORY/" "$DIRECTORY/becup/"
