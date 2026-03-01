@@ -62,11 +62,11 @@
              ))))
      (all-completions arg my-candidates))))
 
-(add-hook 'rust-mode-hook
-          (lambda ()
-            (setq-local company-backends
-                        (cons '(rust-company-backend :separate company-capf)
-                              company-backends))))
+;;(add-hook 'rust-mode-hook
+;;          (lambda ()
+;;            (setq-local company-backends
+;;                        (cons '(rust-company-backend :separate company-capf)
+;;                              company-backends))))
 ;;_________________________________________________
 (defun bl-cpp-company-backend (command &optional arg &rest ignored)
   "Бекегд для компани в c++/c"

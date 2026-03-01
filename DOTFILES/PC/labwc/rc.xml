@@ -8,7 +8,7 @@
       ░▀▀▀░▀▀▀░▀░▀░▀▀▀-->
   <core>
     <decoration>server</decoration>
-    <gap>0</gap>
+    <gap>10</gap>
     <adaptiveSync>no</adaptiveSync>
     <allowTearing>no</allowTearing>
     <autoEnableOutputs>yes</autoEnableOutputs>
@@ -37,7 +37,7 @@
   </resize>
   
   <focus>
-    <followMouse>yes</followMouse>
+    <followMouse>no</followMouse>
     <followMouseRequiresMovement>yes</followMouseRequiresMovement>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
@@ -62,7 +62,7 @@
   </desktops>
   
   <margin top="" bottom="10" left="10" right="10" output="DP-2"/>
-  <margin top="" bottom="" left="" right="" output="HDMI-A-2"/>
+  <margin top="10" bottom="10" left="10" right="10" output="HDMI-A-2"/>
 
 
 
@@ -103,50 +103,60 @@
     <layoutScope>global</layoutScope>
     <repeatRate>25</repeatRate>
     <repeatDelay>600</repeatDelay>
+    
     <keybind key="W-Tab">
       <action name="NextWindow"/>
-    </keybind>
-    <keybind key="W-d">
-      <action name="ForEach">
-        <query>
-            </query>
-        <then>
-          <action name="Iconify"/>
-        </then>
-      </action>
     </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow"/>
     </keybind>
+    
+    <keybind key="W-d"> <!-- in short, just roll down ALL window-->
+      <action name="ForEach">
+        <query>
+            </query>
+        <then>
+          <action name="Iconify"/> 
+        </then>
+      </action>
+    </keybind>
+    
     <keybind key="W-S-Down">
       <action name="Iconify"/>
     </keybind>
+    
     <keybind key="W-Return">
       <action name="Execute" command="lab-sensible-terminal"/>
     </keybind>
+    
     <keybind key="W-S-r">
-      <action name="Execute" command="labwc --reconfigure"/>
+      <action name="Reconfigure"/>
     </keybind>
+    
     <keybind key="Print">
       <action name="Execute" command="~/.scripts/scren.sh"/>
     </keybind>
-    <keybind key="W-S-w">
+    
+    <keybind key="W-S-w"> <!-- reconfigure waybar-->
       <action name="Execute" command="pkill waybar"/>
       <action name="Execute" command="waybar"/>
     </keybind>
+    
     <keybind key="C-A-t">
       <action name="Execute" command="kitty"/>
     </keybind>
+    
     <keybind key="W-b">
       <action name="Execute">
         <command>kitty --start-as=maximized -o background_tint=1 -e btop</command>
       </action>
     </keybind>
+    
     <keybind key="ISO_Next_Group">
       <action name="Execute" command="~/.scripts/switch_layout.sh"/>
     </keybind>
     <keybind key="W-v">
-      <action name="Execute" command="vesktop"/>
+      <action name="Execute" command="discord"/>
     </keybind>
     <keybind key="W-e">
       <action name="Execute" command="emacs -mm"/>
@@ -161,7 +171,7 @@
       <action name="Execute" command="firefox"/>
     </keybind>
     <keybind key="W-f">
-      <action name="Execute" command="nemo --geometry=2560x1440"/>
+      <action name="Execute" command="nemo"/>
     </keybind>
     <keybind key="W-c">
       <action name="Close"/>
@@ -178,16 +188,19 @@
     <keybind key="W-Right">
       <action name="SnapToEdge" direction="right"/>
     </keybind>
-    <keybind key="F10">
+    <keybind key="KP_Home">
+      <action name="Execute" command="~/.scripts/random_wallpaper.sh safety"/>
+    </keybind>
+    <keybind key="KP_up">
       <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw ++"/>
     </keybind>
-    <keybind key="F12">
+    <keybind key="KP_right">
       <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw ++"/>
     </keybind>
-    <keybind key="F9">
+    <keybind key="KP_down">
       <action name="Execute" command="~/.scripts/random_wallpaper.sh nsfw --"/>
     </keybind>
-    <keybind key="F11">
+    <keybind key="KP_left">
       <action name="Execute" command="~/.scripts/random_wallpaper.sh sfw --"/>
     </keybind>
     <keybind key="W-Down">
@@ -381,12 +394,14 @@
  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝
 -->
   <windowRules>
-    <windowRule identifier="*" serverDecoration="no" />\
+    <windowRule identifier="*" serverDecoration="no"/>
+    
     <windowRule identifier="firefox" serverDecoration="no">
-      <action name="ToggleMaximaze"/>
+      <action name="MoveToEdge" direction="up" snapWindows="yes"/>
     </windowRule>
-    <windowRule identifier="nemo" serverDecoration="no">
-      <action name="ToggleMaximaze"/>
+    
+    <windowRule tytle="nemo: ?*" serverDecoration="no"> <!-- because "nemo: " - is a dilog window by nemo, but "nemo: <something path>" is it a main nemo window-->
+      <action name="ToggleMaximize" direction="both"/>
     </windowRule>
   </windowRules>
 

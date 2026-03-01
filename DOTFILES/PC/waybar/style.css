@@ -1,70 +1,137 @@
 * {
-    border-radius: 20px;
-    font-family: JetBrainsMono, Symbols Nerd Font;
-    font-size: 12px;
+  min-height: 0;
+  min-width: 0;
+  font-family: Lexend, "FiraCode Nerd Font";
+  font-size: 16px;
+  font-weight: 600;
 }
 
-@define-color bg #272a34;
-@define-color fg #f9f9f9;
-@define-color gr #545d70;
-@define-color bg2 #2e313d;
-@define-color blue #51a2da;
-
-
 window#waybar {
-	background-color: @bg;
-	color: @bg;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  /* background-color: #1e1e2e; */
+  /* background-color: #181825; */
+  background-color: transparent;
+  /* background-color: rgba(24, 24, 37, 0.6); */
 }
 
 #workspaces button {
-    padding: 0px 5px;
-    margin: 3px 5px;
-    background-color: @bg2;
-    color: @gr;
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem; 
+  border-radius: 6px;
+  /* background-color: #181825; */
+  background-color: #1e1e2e;
+  color: #cdd6f4;
 }
-#workspaces button:hover {
-    background-color: @bg;
-    color: @fg;
+
+#temperature.gpu.critical,
+#temperature.gpumem.critical,
+#temperature.cpu.critical {
+  color:tomato;
 }
+
 #workspaces button.focused {
-    background-color: @bg2;
-    color: @fg;
+  color: #1e1e2e;
+  background-color: #f38ba8;
 }
+
+#workspaces button.active {
+  background-color: #1e1e2e;
+  color: #89b4fa;
+}
+
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: #1e1e2e;
+  color: #f38ba8;
 }
 
-#custom-menu {
-    color: @blue;
-    background-color: @fg;
-    padding: 0px 5px;
-    margin: 5px 15px;
-}
-#cpu {
-    padding: 0 10px;
-    margin: 5 6 5 20px;
-    color: @fg;
-    background-color: @bg2;
-}
-
+#clock,
+#pulseaudio,
+#custom-logo,
+#custom-power,
+#custom-spotify,
+#custom-notification,
+#cpu,
+#tray,
 #memory,
 #window,
-#custom-media,
-#custom-weather,
-#custom-cmus,
-#tray,
-#language,
-#pulseaudio,
-#clock {
-    padding: 0 10px;
-    margin: 5 6px;
-    color: @fg;
-    background-color: @bg2;
+#network,
+#user,
+#custom-keyboard,
+#custom-blucher,
+#temperature.gpu,
+#temperature.gpumem,
+#temperature.cpu,
+#sway-language,
+#mpris {
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+  border-radius: 6px;
+  /* background-color: #181825; */
+  background-color: #1e1e2e;
 }
 
+#mpris.playing {
+  color: #a6e3a1;
+}
+
+#mpris.paused {
+  color: #9399b2;
+}
+
+#custom-sep {
+  padding: 0px;
+  color: #585b70;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#user,
+#custom-blucher,
+#cpu {
+  color: #94e2d5;
+}
+
+#network,
+#temperature.gpu,
+#temperature.gpumem,
+#temperature.cpu,
+#memory {
+  color: #cba6f7;
+}
+
+#clock {
+  color: #74c7ec;
+}
+
+#clock.celendar {
+  color: #89b4fa;
+}
+
+#window {
+  color: #cdd6f4;
+}
+
+#pulseaudio {
+  color: #b4befe;
+}
+
+#pulseaudio.muted {
+  color: #a6adc8;
+}
+
+#custom-logo {
+  color: #89b4fa;
+}
+
+#custom-keyboard,
 #custom-power {
-    color: @bg;
-    background-color: @fg;
-    padding: 0px 7px;
-    margin: 5px 20px;
+  color: #f38ba8;
+}
+
+tooltip {
+  background-color: #181825;
+  border: 2px solid #89b4fa;
 }

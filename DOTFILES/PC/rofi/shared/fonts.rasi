@@ -1,5 +1,5 @@
 /* Text Font */
 
 * {
-    font: "Iosevka 10";
+    font: "FiraCode Nerd Font 10";
 }
