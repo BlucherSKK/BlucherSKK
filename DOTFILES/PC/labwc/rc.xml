@@ -133,10 +133,14 @@
       <action name="Reconfigure"/>
     </keybind>
     
+    <keybind key="W-y">
+      <action name="Execute" command="kitty -e yazi"/>
+    </keybind>
+    
     <keybind key="Print">
       <action name="Execute" command="~/.scripts/scren.sh"/>
     </keybind>
-    
+
     <keybind key="W-S-w"> <!-- reconfigure waybar-->
       <action name="Execute" command="pkill waybar"/>
       <action name="Execute" command="waybar"/>

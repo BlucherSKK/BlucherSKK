@@ -4,7 +4,7 @@ wlr-randr --output HDMI-A-2 --mode 1920x1080@75.002998  --pos 2560,0
 wlr-randr --output DP-2 --mode 2560x1440@75.123001 --scale 1 --pos 0,0
 
 # wallpaper daemon
-swww-daemon &
+awww-daemon &
 
 # select random wallpaper
 # $HOME/.scripts/random_wallpaper.sh sfw random &
